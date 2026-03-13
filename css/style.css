@@ -824,6 +824,101 @@ nav.scrolled {
   font-weight: 500;
 }
 
+/* ===== Links & Publications ===== */
+#links {
+  background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 50%, var(--bg-deep) 100%);
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(167, 139, 250, 0.08);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition-slow), transform var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.link-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple-mid), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.link-card:hover {
+  border-color: rgba(167, 139, 250, 0.25);
+  box-shadow: 0 0 60px rgba(124, 58, 237, 0.15), inset 0 0 60px rgba(124, 58, 237, 0.03);
+  transform: translateY(-4px);
+  color: inherit;
+}
+
+.link-card:hover::after { opacity: 1; }
+
+.link-card-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+}
+
+.link-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.link-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.link-card-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.link-card-arrow {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.75rem;
+  font-size: 1.2rem;
+  color: var(--purple-light);
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.link-card:hover .link-card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ===== Credentials ===== */
 #credentials {
   background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-deepest) 100%);
