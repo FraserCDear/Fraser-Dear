@@ -142,8 +142,10 @@ nav.scrolled {
   border-radius: 1px;
 }
 
-.nav-links a:hover { color: var(--purple-lighter); }
-.nav-links a:hover::after { width: 100%; left: 0; }
+.nav-links a:hover,
+.nav-links a.active { color: var(--purple-lighter); }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; left: 0; }
 
 .nav-toggle {
   display: none;
@@ -1151,6 +1153,41 @@ footer a {
 
 footer a:hover {
   color: var(--purple-light);
+}
+
+/* ===== Back to top ===== */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  background: rgba(15, 12, 41, 0.85);
+  backdrop-filter: blur(12px);
+  color: var(--purple-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: var(--glow-purple);
+  color: var(--purple-lighter);
 }
 
 /* ===== Keyframes ===== */

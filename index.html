@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Fraser Dear — Head of AI and Data Innovation at BCN. Physicist turned AI leader, driving digital transformation through data insights, Microsoft AI, and Power Platform." />
+  <!-- Open Graph for LinkedIn/social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fraser Dear — Head of AI & Data Innovation" />
+  <meta property="og:description" content="Physicist turned AI leader. Driving digital transformation through data insights, Microsoft AI, and Power Platform at BCN." />
+  <meta property="og:image" content="https://fraserdear.github.io/Fraser-Dear/img/fraser-dear.png" />
+  <meta property="og:url" content="https://fraserdear.github.io/Fraser-Dear/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fraser Dear — Head of AI & Data Innovation" />
+  <meta name="twitter:description" content="Physicist turned AI leader. Driving digital transformation through data insights, Microsoft AI, and Power Platform at BCN." />
+  <meta name="twitter:image" content="https://fraserdear.github.io/Fraser-Dear/img/fraser-dear.png" />
   <title>Fraser Dear — AI & Data Innovation</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
@@ -422,6 +432,11 @@
     </div>
   </section>
 
+  <!-- ===== Back to top ===== -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
   <!-- ===== Footer ===== -->
   <footer>
     <p>&copy; <span id="year"></span> Fraser Dear</p>
@@ -445,10 +460,39 @@
       });
     });
 
-    // ===== Navbar scroll effect =====
-    const nav = document.getElementById('nav');
+    // ===== Navbar scroll effect + back-to-top + active nav =====
+    var nav = document.getElementById('nav');
+    var backToTop = document.getElementById('back-to-top');
+    var sections = document.querySelectorAll('.section, .hero');
+    var navAnchors = document.querySelectorAll('.nav-links a');
+
     window.addEventListener('scroll', function () {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
+      var scrollY = window.scrollY;
+
+      // Nav background
+      nav.classList.toggle('scrolled', scrollY > 50);
+
+      // Back to top visibility
+      backToTop.classList.toggle('visible', scrollY > 600);
+
+      // Active nav highlighting
+      var current = '';
+      sections.forEach(function (section) {
+        var top = section.offsetTop - 200;
+        if (scrollY >= top) {
+          current = section.getAttribute('id') || '';
+        }
+      });
+      navAnchors.forEach(function (a) {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) {
+          a.classList.add('active');
+        }
+      });
+    });
+
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     // ===== Typing effect =====
